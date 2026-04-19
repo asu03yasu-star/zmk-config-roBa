@@ -67,7 +67,8 @@
         };
     };
 
-    behaviors {
+behaviors {
+        // 既存のレイヤー切り替え定義
         lt_to_layer_0: lt_to_layer_0 {
             compatible = "zmk,behavior-hold-tap";
             label = "LAYER_TAP_TO_0";
@@ -75,6 +76,15 @@
 
             #binding-cells = <2>;
             tapping-term-ms = <200>;
+        };
+
+        // 水平エンコーダーをマウススクロールにするための定義
+        scroll_encoder: scroll_encoder {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&mwh SCROLL_UP>, <&mwh SCROLL_DOWN>;
+            // PC側でスクロールを正しく検知させるための信号長設定
+            tap-ms = <20>; 
         };
     };
 
